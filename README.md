@@ -56,6 +56,12 @@ npm run watch
 npm run deploy
 ```
 
+### Test
+```bash
+npm run test
+```
+
+
 ## Authors
 
 👤 Carlos Vivas
