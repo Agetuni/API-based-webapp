@@ -57,7 +57,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.scss'],
   },
-
+  experiments: {
+    topLevelAwait: true,
+  },
   optimization: {
     runtimeChunk: 'single',
   },

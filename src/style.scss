@@ -10,4 +10,29 @@ html {
 
 body {
   background-color: aqua;
+  color: red;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.flex-contai5ner {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  text-align: center;
+}
+
+.shows {
+  background-color: dodgerblue;
+  padding: 10px;
+  flex: 20%;
+}
+
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
 }
