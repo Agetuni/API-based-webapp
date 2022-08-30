@@ -6,6 +6,8 @@ const ShowModalTemplate = document.querySelector('.template #show-modal-template
 const buildModal = (movie) => {
   const ShowModalElement = ShowModalTemplate.cloneNode(true);
 
+  ShowModalElement.id = `show-modal-${movie.id}`;
+
   ShowModalElement.querySelector('span.close').addEventListener('click', () => {
     ShowModalElement.remove();
   });
