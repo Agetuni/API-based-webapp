@@ -3,6 +3,7 @@ import apiService from './module/apiService.js';
 import domService from './module/domService.js';
 
 const moviesUrl = 'https://api.tvmaze.com/shows';
+
 const initTemplate = () => {
   const titleTemplateElement = document.getElementById('title-template');
   const newtitleElement = titleTemplateElement.cloneNode(true);
@@ -17,9 +18,6 @@ const init = async () => {
 };
 window.addEventListener('load', init);
 
-// display movies  TODO: Refactor
 const movies = await apiService.getTvShows(moviesUrl);
 await domService.displayTvShows(movies);
-
-// add simple modal  TODO: Refactor
 domService.addModal();

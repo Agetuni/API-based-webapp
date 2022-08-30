@@ -11,6 +11,7 @@ html {
 body {
   background-color: aqua;
   color: red;
+  font-size: 1px;
 }
 
 * {
@@ -31,10 +32,8 @@ body {
   flex: 20%;
 }
 
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
+.img-container p {
+  font-size: 1px;
 }
 
 .modal {
@@ -52,10 +51,31 @@ body {
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  max-height: 80%;
+  color: red;
+  font-size: 100px;
+}
+
+.modal-detail {
+  display: flex;
+}
+
+.modal-detail-img {
+  height: 75vh;
+}
+
+.modal-detail-img img {
+  height: 100%;
+}
+
+.modal-detail-text {
+  color: black;
+  padding: 50px;
+  font-size: 2vh;
 }
 
 .close {
@@ -70,4 +90,11 @@ body {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .flex-container,
+  .modal-detail {
+    flex-direction: column;
+  }
 }
