@@ -1,6 +1,7 @@
 import './style.scss';
-import file from './module/apiCall.js';
-
+import apiService from './module/apiService.js';
+import domService from './module/domService.js';
+let moviesUrl="https://api.tvmaze.com/shows";
 const initTemplate = () => {
   const titleTemplateElement = document.getElementById('title-template');
   const newtitleElement = titleTemplateElement.cloneNode(true);
@@ -13,30 +14,12 @@ const initTemplate = () => {
 const init = async () => {
   initTemplate();
 };
-
 window.addEventListener('load', init);
 
-// alazar
-const movies = await file.get('https://api.tvmaze.com/shows');
-const container = document.querySelector('.flex-container');
-let filmData = '';
-movies.forEach((e) => {
-  const { id } = e;
-  const { name } = e;
-  const image = e.image.medium;
-  filmData += `
-<div class="shows">
-<div id="1">
-${id}  ${name}
-</div>
-<div class="img-container">
-<img src="${image}" alt="photo">
-</div>
-<div class="reaction">
-<button>like</button>
-<button class="comment">comment</button>
-</div>
-</div>
-`;
-});
-container.innerHTML = filmData;
+// display movies  TODO: Refactor
+const movies = await apiService.getTvShows(moviesUrl);
+await domService.displayTvShows(movies);
+
+// add simple modal  TODO: Refactor
+domService.addModal();
+

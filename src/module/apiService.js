@@ -1,4 +1,4 @@
-const get = async (url) => {
+const getTvShows = async (url) => {
   const response = await fetch(url);
   return response.json();
 };
@@ -42,5 +42,5 @@ const comment = async (url, itemId, username, comment) => {
   return response.status;
 };
 module.exports = {
-  get, getlike, like, getComment, comment,
+  getTvShows, getlike, like, getComment, comment,
 };
