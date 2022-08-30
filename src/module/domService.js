@@ -12,9 +12,13 @@ const buildShowItemElement = (movie) => {
 
   ShowItemElement.id = `show-item-${movie.id}`;
 
-  const imgElement = ShowItemElement.querySelector('.img-container img');
+  const imgElement = document.createElement('img');
   imgElement.src = movie.image;
   imgElement.alt = `${movie.title} Poster`;
+
+  const imgContainerElement = ShowItemElement.querySelector('.img-container');
+
+  imgContainerElement.appendChild(imgElement);
 
   const titleElement = ShowItemElement.querySelector('.title');
   titleElement.textContent = movie.title;
