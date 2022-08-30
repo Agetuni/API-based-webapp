@@ -1,6 +1,6 @@
-const container = document.querySelector(".flex-container");
+const container = document.querySelector('.flex-container');
 const displayTvShows = async (movies) => {
-  let filmData = "";
+  let filmData = '';
   movies.forEach((e) => {
     const { id } = e;
     const { name } = e;
@@ -24,16 +24,16 @@ const displayTvShows = async (movies) => {
 };
 
 const addModal = async () => {
-    var modal = document.getElementById("myModal");
-    var commentButtons = document.querySelectorAll(".comment");
-    const closebutton = document.querySelector(".close");
-    closebutton.addEventListener("click", function(){
-        modal.style.display = "none";
-      });
-    commentButtons.forEach(element => {
-        element.addEventListener("click", function(){
-            modal.style.display = "block";
-          });
+  const modal = document.getElementById('myModal');
+  const commentButtons = document.querySelectorAll('.comment');
+  const closebutton = document.querySelector('.close');
+  closebutton.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  commentButtons.forEach((element) => {
+    element.addEventListener('click', () => {
+      modal.style.display = 'block';
     });
+  });
 };
-module.exports = { displayTvShows ,addModal};
+module.exports = { displayTvShows, addModal };

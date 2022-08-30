@@ -1,7 +1,8 @@
 import './style.scss';
 import apiService from './module/apiService.js';
 import domService from './module/domService.js';
-let moviesUrl="https://api.tvmaze.com/shows";
+
+const moviesUrl = 'https://api.tvmaze.com/shows';
 const initTemplate = () => {
   const titleTemplateElement = document.getElementById('title-template');
   const newtitleElement = titleTemplateElement.cloneNode(true);
@@ -22,4 +23,3 @@ await domService.displayTvShows(movies);
 
 // add simple modal  TODO: Refactor
 domService.addModal();
-
