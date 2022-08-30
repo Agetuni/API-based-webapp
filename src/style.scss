@@ -4,6 +4,11 @@
   display: none;
 }
 
+* {
+  box-sizing: border-box;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -41,7 +46,6 @@ body {
       gap: 1rem;
 
       .nav-item {
-        font-family: Montserrat, Arial, Helvetica, sans-serif;
         display: block;
         transition: transform 0.25s ease-in-out;
 
