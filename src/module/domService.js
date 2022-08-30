@@ -1,4 +1,4 @@
-const apiService = require('./apiService.js');
+import apiService from './apiService.js';
 
 const moviesUrl = 'https://api.tvmaze.com/shows';
 const container = document.querySelector('.flex-container');
@@ -10,7 +10,7 @@ const displayTvShows = async (movies) => {
   movies.forEach((e) => {
     filmData += `
 <div class="shows">
-   
+
    <div class="img-container">
      <img src="${e.image}" alt="photo">
    </div>
@@ -52,4 +52,4 @@ const addModal = async () => {
   });
 };
 
-module.exports = { displayTvShows, addModal };
+export default { displayTvShows, addModal };

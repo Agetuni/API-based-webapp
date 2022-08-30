@@ -1,5 +1,5 @@
-const MovieList = require('./movieList.js');
-const Movie = require('./movie.js');
+import MovieList from './movieList.js';
+import Movie from './movie.js';
 
 const getTvShows = async (url) => {
   const allMovies = new MovieList();
@@ -77,7 +77,8 @@ const comment = async (url, itemId, username, comment) => {
   });
   return response.status;
 };
-module.exports = {
+
+export default {
   getTvShows,
   getTvShow,
   getlike,

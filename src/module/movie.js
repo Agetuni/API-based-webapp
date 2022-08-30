@@ -10,4 +10,5 @@ class Movie {
     this.summary = summary;
   }
 }
-module.exports = Movie;
+
+export default Movie;

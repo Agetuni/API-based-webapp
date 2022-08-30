@@ -8,4 +8,4 @@ class MovieList {
   }
 }
 
-module.exports = MovieList;
+export default MovieList;
