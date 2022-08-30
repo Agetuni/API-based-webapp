@@ -1,5 +1,5 @@
 {
-	"name": "webpack-init-project",
+	"name": "api-based-webapp",
 	"version": "0.0.1",
 	"description": "",
 	"private": true,
@@ -13,7 +13,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/carlosmuerto/webpack-init-project.git"
+		"url": "git+https://github.com/Agetuni/API-based-webapp.git"
 	},
 	"jest": {
 		"testEnvironment": "jsdom"
@@ -22,9 +22,9 @@
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/carlosmuerto/webpack-init-project/issues"
+		"url": "https://github.com/Agetuni/API-based-webapp/issues"
 	},
-	"homepage": "https://github.com/carlosmuerto/webpack-init-project#readme",
+	"homepage": "https://github.com/Agetuni/API-based-webapp#readme",
 	"dependencies": {
 		"lodash": "^4.17.21"
 	},
