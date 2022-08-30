@@ -10,7 +10,7 @@ const initTemplate = () => {
 
   newtitleElement.textContent = 'API-based-webap';
 
-  document.querySelector('main').appendChild(newtitleElement);
+  // document.querySelector('header').appendChild(newtitleElement);
 };
 
 const init = async () => {
