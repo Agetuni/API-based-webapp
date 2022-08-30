@@ -21,7 +21,7 @@ const buildShowItemElement = (movie) => {
   imgContainerElement.appendChild(imgElement);
 
   const titleElement = ShowItemElement.querySelector('.title');
-  titleElement.textContent = movie.title;
+  titleElement.innerHTML = movie.name;
 
   const commentBtnElement = ShowItemElement.querySelector('.comment-btn');
   commentBtnElement.dataset.id = movie.id;
