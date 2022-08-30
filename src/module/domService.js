@@ -5,26 +5,31 @@ const container = document.querySelector('.flex-container');
 const detailImage = document.querySelector('.modal-detail-img');
 const detailText = document.querySelector('.modal-detail-text');
 
-const displayTvShows = async (movies) => {
-  let filmData = '';
-  movies.forEach((e) => {
-    filmData += `
-<div class="shows">
+const ShowItemTemplate = document.querySelector('.template #show-item-template');
 
-   <div class="img-container">
-     <img src="${e.image}" alt="photo">
-   </div>
-   <div id="1">
-     ${e.id}  ${e.name}
-   </div>
-   <div class="reaction">
-     <button>like</button>
-     <button class="comment" data-id="${e.id}">comment</button>
-   </div>
-</div>
-`;
+const buildShowItemElement = (movie) => {
+  const ShowItemElement = ShowItemTemplate.cloneNode(true);
+
+  ShowItemElement.id = `show-item-${movie.id}`;
+
+  const imgElement = ShowItemElement.querySelector('.img-container img');
+  imgElement.src = movie.image;
+  imgElement.alt = `${movie.title} Poster`;
+
+  const titleElement = ShowItemElement.querySelector('.title');
+  titleElement.textContent = movie.title;
+
+  const commentBtnElement = ShowItemElement.querySelector('.comment-btn');
+  commentBtnElement.dataset.id = movie.id;
+
+  return ShowItemElement;
+};
+
+const displayTvShows = async (movies) => {
+  container.textContent = '';
+  movies.forEach((movie) => {
+    container.appendChild(buildShowItemElement(movie));
   });
-  container.innerHTML = filmData;
 };
 
 const addModal = async () => {
