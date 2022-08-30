@@ -1,20 +1,57 @@
-import apiService from './apiService.js';
-
-const moviesUrl = 'https://api.tvmaze.com/shows';
 const container = document.querySelector('.flex-container');
-const detailImage = document.querySelector('.modal-detail-img');
-const detailText = document.querySelector('.modal-detail-text');
 
 const ShowItemTemplate = document.querySelector('.template #show-item-template');
+const ShowModalTemplate = document.querySelector('.template #show-modal-template');
+
+const buildModal = (movie) => {
+  const ShowModalElement = ShowModalTemplate.cloneNode(true);
+
+  ShowModalElement.querySelector('span.close').addEventListener('click', () => {
+    ShowModalElement.remove();
+  });
+
+  const imgElement = document.createElement('img');
+  imgElement.src = movie.image;
+  imgElement.alt = `${movie.title} Poster`;
+
+  ShowModalElement.querySelector('.modal-detail-img').appendChild(imgElement);
+
+  const detailTextElement = ShowModalElement.querySelector('.modal-detail-text');
+
+  const titleElement = detailTextElement.querySelector('.name');
+  titleElement.textContent = movie.name;
+
+  const languageElement = detailTextElement.querySelector('.language');
+  languageElement.textContent = movie.language;
+
+  const genresElement = detailTextElement.querySelector('.genres');
+  genresElement.textContent = movie.genres;
+
+  const ratingElement = detailTextElement.querySelector('.rating');
+  ratingElement.textContent = movie.rating;
+
+  const typeElement = detailTextElement.querySelector('.type');
+  typeElement.innerHTML = movie.type;
+
+  const summaryElement = detailTextElement.querySelector('.summary');
+  summaryElement.innerHTML = movie.summary;
+
+  document.querySelector('body').appendChild(ShowModalElement);
+};
 
 const buildShowItemElement = (movie) => {
   const ShowItemElement = ShowItemTemplate.cloneNode(true);
 
   ShowItemElement.id = `show-item-${movie.id}`;
 
+  ShowItemElement.addEventListener('click', (e) => {
+    e.preventDefault();
+    buildModal(movie);
+  });
+
   const imgElement = document.createElement('img');
   imgElement.src = movie.image;
-  imgElement.alt = `${movie.title} Poster`;
+  imgElement.alt = `${movie.name} Poster`;
 
   const imgContainerElement = ShowItemElement.querySelector('.img-container');
 
@@ -31,11 +68,9 @@ const buildShowItemElement = (movie) => {
 
 const displayTvShows = async (movies) => {
   container.textContent = '';
-  movies.forEach((movie) => {
-    container.appendChild(buildShowItemElement(movie));
-  });
+  movies.forEach((movie) => container.appendChild(buildShowItemElement(movie)));
 };
-
+/*
 const addModal = async () => {
   const modal = document.getElementById('myModal');
   const commentButtons = document.querySelectorAll('.comment');
@@ -60,5 +95,6 @@ const addModal = async () => {
     });
   });
 };
+*/
 
-export default { displayTvShows, addModal };
+export default { displayTvShows };
