@@ -1,13 +1,54 @@
+@import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:100,300,400";
+
 .template {
   display: none;
 }
 
 html {
+  margin: 0;
+  padding: 0;
   max-width: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
+a {
+  all: unset;
+}
+
 body {
-  background-color: aqua;
+  background-color: whitesmoke;
+  margin: 0;
+  padding: 0;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem 10%;
+
+    .logo {
+      font-family: Roboto, Arial, Helvetica, sans-serif;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      .nav-item {
+        font-family: Montserrat, Arial, Helvetica, sans-serif;
+        display: block;
+        transition: transform 0.25s ease-in-out;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
 }
