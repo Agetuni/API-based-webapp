@@ -1,6 +1,42 @@
+const MovieList = require('./movieList.js');
+const Movie = require('./movie.js');
+
 const getTvShows = async (url) => {
-  const response = await fetch(url);
-  return response.json();
+  const allMovies = new MovieList();
+  const movies = await fetch(url)
+    .then((response) => response.json())
+    .then((response) => response);
+  movies.forEach((element) => {
+    allMovies.push(
+      new Movie(
+        element.id,
+        element.name,
+        element.type,
+        element.language,
+        element.genres[0],
+        element.rating.average,
+        element.image.medium,
+        element.summary,
+      ),
+    );
+  });
+  return allMovies;
+};
+const getTvShow = async (url) => {
+  const movieData = await fetch(url)
+    .then((response) => response.json())
+    .then((response) => response);
+  const result = new Movie(
+    movieData.id,
+    movieData.name,
+    movieData.type,
+    movieData.language,
+    movieData.genres[0],
+    movieData.rating.average,
+    movieData.image.medium,
+    movieData.summary,
+  );
+  return result;
 };
 
 const getlike = async (url) => {
@@ -42,5 +78,10 @@ const comment = async (url, itemId, username, comment) => {
   return response.status;
 };
 module.exports = {
-  getTvShows, getlike, like, getComment, comment,
+  getTvShows,
+  getTvShow,
+  getlike,
+  like,
+  getComment,
+  comment,
 };

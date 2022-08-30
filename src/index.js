@@ -17,7 +17,6 @@ const init = async () => {
   initTemplate();
 };
 window.addEventListener('load', init);
-
 const movies = await apiService.getTvShows(moviesUrl);
-await domService.displayTvShows(movies);
+await domService.displayTvShows(movies.list);
 domService.addModal();

@@ -4,24 +4,22 @@ const moviesUrl = 'https://api.tvmaze.com/shows';
 const container = document.querySelector('.flex-container');
 const detailImage = document.querySelector('.modal-detail-img');
 const detailText = document.querySelector('.modal-detail-text');
+
 const displayTvShows = async (movies) => {
   let filmData = '';
   movies.forEach((e) => {
-    const { id } = e;
-    const { name } = e;
-    const image = e.image.medium;
     filmData += `
 <div class="shows">
    
    <div class="img-container">
-     <img src="${image}" alt="photo">
+     <img src="${e.image}" alt="photo">
    </div>
    <div id="1">
-     ${id}  ${name}
+     ${e.id}  ${e.name}
    </div>
    <div class="reaction">
      <button>like</button>
-     <button class="comment" data-id="${id}">comment</button>
+     <button class="comment" data-id="${e.id}">comment</button>
    </div>
 </div>
 `;
@@ -39,13 +37,13 @@ const addModal = async () => {
   commentButtons.forEach((element) => {
     element.addEventListener('click', async () => {
       const id = element.getAttribute('data-id');
-      const movieData = await apiService.getTvShows(`${moviesUrl}/${id}`);
-      detailImage.innerHTML = `<img src = ${movieData.image.original}>`;
+      const movieData = await apiService.getTvShow(`${moviesUrl}/${id}`);
+      detailImage.innerHTML = `<img src = ${movieData.image}>`;
       detailText.innerHTML = `
 <p> Name:${movieData.name}</p>
-<p> Date:${movieData.premiered}</p>
 <p> Language:${movieData.language}</p>
 <p> Type:${movieData.type}</p>
+<p> Gener:${movieData.genress}</p>
 <p> Average rating:${movieData.rating.average}</p>
 <P>${movieData.summary}</p>
       `;
