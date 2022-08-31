@@ -2,113 +2,96 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>API-based-webapp</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+		integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>API-based-webapp</title>
 </head>
 
 <body>
 
-  <div class="template">
+	<div class="template">
 
-    <div id="show-item-template" class="show-item">
-      <div class="img-container">
-      </div>
-      <div class="info-container">
-        <div class="title"></div>
-        <div class="reaction">
-          <button class="like-btn"><i class="fa-solid fa-thumbs-up"></i></button>
-          <button class="comment-btn">comment</button>
-        </div>
-      </div>
-    </div>
+		<div id="show-item-template" class="show-item">
+			<div class="img-container">
+			</div>
+			<div class="info-container">
+				<div class="title"></div>
+				<div class="reaction">
+					<button class="like-btn"><i class="fa-solid fa-thumbs-up"></i></button>
+					<button class="comment-btn">comment</button>
+				</div>
+			</div>
+		</div>
 
-    <div id="modal-content-user-comment-template" class="modal-content-user-comment">
-      <div class="user">
-        <h4>user</h4>
-      </div>
-      <div class="comment-content">
-        <p>comment</p>
-      </div>
-    </div>
+		<div id="modal-content-user-comment-template" class="modal-content-user-comment">
+			<div class="user">
+				<h4>user</h4>
+			</div>
+			<div class="comment-content">
+				<p>comment</p>
+			</div>
+		</div>
 
-    <div id="show-modal-template" class="show-modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class=" modal-detail">
-          <div class="modal-detail-img"></div>
-          <div class="modal-detail-text">
-            <h3 class="name">name</h3>
-            <div class="language">language</div>
-            <div class="type">type</div>
-            <div class="genres">genres</div>
-            <div class="rating">rating</div>
-            <div class="summary">summary</div>
-          </div>
-          <div class="modal-detail-comment">
+		<div id="show-modal-template" class="show-modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<div class=" modal-detail">
+					<div class="modal-detail-img"></div>
+					<div class="modal-detail-text">
+						<h3 class="name">name</h3>
+						<div class="language">language</div>
+						<div class="type">type</div>
+						<div class="genres">genres</div>
+						<div class="rating">rating</div>
+						<div class="summary">summary</div>
+					</div>
+					<div class="modal-detail-comment">
 
-            <h2>Comments <span class="comment-counter"> </span> </h2>
-            <form class="add-comment">
-              <input type="text" name="name" id="name" class="form-add-name" placeholder="Full name">
-              <textarea name="comment" id="comment" cols="50" rows="5" class="form-add-comment"
-                placeholder="write your comment here ....">
+						<h2>Comments <span class="comment-counter"> </span> </h2>
+						<form class="add-comment">
+							<input type="text" name="name" id="name" class="form-add-name" placeholder="Full name">
+							<textarea name="comment" id="comment" cols="50" rows="5" class="form-add-comment"
+								placeholder="write your comment here ....">
                 </textarea>
-              <button class="submit-comment-btn" type="submit">submit</button>
-            </form>
-            <div class="view-comment">
-            </div>
+							<button class="submit-comment-btn" type="submit">submit</button>
+						</form>
+						<div class="view-comment">
+						</div>
 
-          </div>
-        </div>
-      </div>
-    </div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-  </div>
+	</div>
 
-  <header>
-    <div class="logo">
-      <a href="#">API Based WebApp</a>
-    </div>
-    <Nav>
-      <div class="nav-item">
-        <a href="#movies">
-          <i class="fa-solid fa-film"></i>
-          Movies
-        </a>
-      </div>
-    </Nav>
-  </header>
-  <main>
-    <div class="flex-container tv-show-conatiner">
-    </div>
-  </main>
-  <footer>
-
-  </footer>
-
-
-  <aside>
-    <div id="myModal" class="modal">
-
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class=" modal-detail">
-          <div class="modal-detail-img">
-          </div>
-          <div class="modal-detail-text">
-          </div>
-          <div class="modal-detail-comment">
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </aside>
+	<header>
+		<div class="logo">
+			<a href="#">API Based WebApp</a>
+		</div>
+		<Nav>
+			<div class="nav-item">
+				<a href="#movies">
+					<i class="fa-solid fa-film"></i>
+					Movies
+				</a>
+			</div>
+		</Nav>
+	</header>
+	<main>
+		<div class="flex-container tv-show-conatiner">
+		</div>
+	</main>
+	<footer>
+		<p>
+			&copy; 2022 Movies by <a href="https://github.com/Agetuni">Aleazar yilma</a> &amp; <a
+				href="https://github.com/carlosmuerto">Carlos A. Vivas</a>
+		</p>
+	</footer>
 </body>
+
 
 </html>
