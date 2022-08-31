@@ -277,6 +277,43 @@ body {
             font-size: 2rem;
           }
         }
+
+        .view-comment {
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          padding: 5px;
+
+          @media (min-width: 768px) {
+            & {
+              padding: 1rem;
+            }
+          }
+
+          .modal-content-user-comment {
+            .user {
+              h4 {
+                padding: 0;
+                margin: 0;
+                font-size: 1.25rem;
+                font-weight: bold;
+              }
+            }
+
+            .comment-content {
+              p {
+                margin: 0.25rem;
+                padding: 0;
+
+                @media (min-width: 768px) {
+                  & {
+                    margin: 0.25rem 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

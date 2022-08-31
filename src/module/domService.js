@@ -6,6 +6,7 @@ const container = document.querySelector('.flex-container');
 
 const ShowItemTemplate = document.querySelector('.template #show-item-template');
 const ShowModalTemplate = document.querySelector('.template #show-modal-template');
+const modalContentUserCommentTemplate = document.querySelector('.template #modal-content-user-comment-template');
 
 const buildDetailTextElement = (detailTextElement, movie) => {
   const titleElement = detailTextElement.querySelector('.name');
@@ -38,8 +39,18 @@ const buildDetailcommentElement = (detailcommentElement, movie) => {
 
   apiService.getComments(commentUrl, movie.id).then((CommentList) => {
     comentList.innerHTML = '';
+    comentCounter.textContent = `( ${CommentList.List.length} )`;
     CommentList.List.forEach((comment) => {
+      const modalContentUserCommentElement = modalContentUserCommentTemplate.cloneNode(true);
+      modalContentUserCommentElement.id = `modal-content-user-comment-${comment.item_id}`;
 
+      const userName = modalContentUserCommentElement.querySelector('.user h4');
+      userName.textContent = comment.username;
+
+      const commentContent = modalContentUserCommentElement.querySelector('.comment-content p');
+      commentContent.textContent = comment.comment;
+
+      comentList.appendChild(modalContentUserCommentElement);
     });
   });
 
