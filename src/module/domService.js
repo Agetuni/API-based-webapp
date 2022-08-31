@@ -145,10 +145,6 @@ const displayTvShows = async (movies) => {
 
   movies.forEach((movie) => {
     const like = find(likeList, ['item_id', movie.id.toString()]);
-    if (like) {
-      console.log(movie);
-      console.log(like);
-    }
     movie.like = like?.likes ?? 0;
     container.appendChild(buildShowItemElement(movie));
   });
