@@ -1,83 +1,141 @@
 import apiService from './apiService.js';
 
-const moviesUrl = 'https://api.tvmaze.com/shows';
 const commentUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Sff4TpvfhVNiDO6YpeWb/comments';
+
 const container = document.querySelector('.flex-container');
-const detailImage = document.querySelector('.modal-detail-img');
-const detailText = document.querySelector('.modal-detail-text');
-const submit = document.querySelector('.form-add-submit');
 
-const displayComments = async (id) => {
-  const comments = await apiService.getComments(commentUrl, id);
-  const commentContainer = document.querySelector('.modal-view-comment');
-  const commentCounter = document.querySelector('.comment-counter');
-  commentCounter.innerHTML = `(${comments.List.length})`;
-  let htmlValue = '';
-  comments.List.forEach((element) => {
-    htmlValue += `<textarea name="" id="" cols="50" rows="1" disabled>"${element.comment}"- ${element.username}</textarea>`;
-  });
-  commentContainer.innerHTML = htmlValue;
-};
-const displayTvShows = async (movies) => {
-  let filmData = '';
-  movies.forEach((e) => {
-    filmData += `
-<div class="shows">
+const ShowItemTemplate = document.querySelector('.template #show-item-template');
+const ShowModalTemplate = document.querySelector('.template #show-modal-template');
+const modalContentUserCommentTemplate = document.querySelector('.template #modal-content-user-comment-template');
 
-   <div class="img-container">
-     <img src="${e.image}" alt="photo">
-   </div>
-   <div id="1">
-     ${e.id}  ${e.name}
-   </div>
-   <div class="reaction">
-     <button>like</button>
-     <button class="comment" data-id="${e.id}">comment</button>
-   </div>
-</div>
-`;
-  });
-  container.innerHTML = filmData;
+const buildDetailTextElement = (detailTextElement, movie) => {
+  const titleElement = detailTextElement.querySelector('.name');
+  titleElement.textContent = movie.name;
+
+  const languageElement = detailTextElement.querySelector('.language');
+  languageElement.textContent = movie.language;
+
+  const genresElement = detailTextElement.querySelector('.genres');
+  genresElement.textContent = movie.genres;
+
+  const ratingElement = detailTextElement.querySelector('.rating');
+  ratingElement.textContent = movie.rating;
+
+  const typeElement = detailTextElement.querySelector('.type');
+  typeElement.innerHTML = movie.type;
+
+  const summaryElement = detailTextElement.querySelector('.summary');
+  summaryElement.innerHTML = movie.summary;
 };
 
-const addModal = async () => {
-  const modal = document.getElementById('myModal');
-  const commentButtons = document.querySelectorAll('.comment');
-  const closebutton = document.querySelector('.close');
+const buildDetailcommentElement = (detailcommentElement, movie) => {
+  const comentCounter = detailcommentElement.querySelector('.comment-counter');
+  comentCounter.textContent = '( Loading... )';
 
-  closebutton.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-  commentButtons.forEach((element) => {
-    element.addEventListener('click', async () => {
-      const id = element.getAttribute('data-id');
-      const movieData = await apiService.getTvShow(`${moviesUrl}/${id}`);
-      await displayComments(id);
-      submit.setAttribute('data-id', id);
-      detailImage.innerHTML = `<img src = ${movieData.image}>`;
-      detailText.innerHTML = `
-<p> Name:${movieData.name} </p>
-<p> Language:${movieData.language}</p>
-<p> Type:${movieData.type}</p>
-<p> Gener:${movieData.genress}</p>
-<p> Average rating:${movieData.rating.average}</p>
-<P>${movieData.summary}</p>
-      `;
-      modal.style.display = 'block';
+  const comentList = detailcommentElement.querySelector('.view-comment');
+  const LoadingdivElement = document.createElement('div');
+  LoadingdivElement.classList.add('loading-coment-item');
+  LoadingdivElement.textContent = '( Loading... )';
+
+  const comentSubmitBtn = detailcommentElement.querySelector('.submit-comment-btn');
+  comentSubmitBtn.disabled = true;
+
+  apiService.getComments(commentUrl, movie.id).then((CommentList) => {
+    comentList.innerHTML = '';
+    comentSubmitBtn.disabled = false;
+    comentCounter.textContent = `( ${CommentList.List.length} )`;
+    CommentList.List.forEach((comment) => {
+      const modalContentUserCommentElement = modalContentUserCommentTemplate.cloneNode(true);
+      modalContentUserCommentElement.id = `modal-content-user-comment-${comment.item_id}`;
+
+      const userName = modalContentUserCommentElement.querySelector('.user h4');
+      userName.textContent = comment.username;
+
+      const commentContent = modalContentUserCommentElement.querySelector('.comment-content p');
+      commentContent.textContent = comment.comment;
+
+      comentList.appendChild(modalContentUserCommentElement);
+    });
+
+    const commentForm = detailcommentElement.querySelector('form.add-comment');
+    commentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const CommentEntries = Object.fromEntries(data.entries());
+
+      await apiService.comment(
+        commentUrl,
+        movie.id,
+        CommentEntries.name,
+        CommentEntries.comment,
+      );
+
+      buildDetailcommentElement(detailcommentElement, movie);
     });
   });
+
+  comentList.appendChild(LoadingdivElement);
 };
 
-const addCommentEventListner = async () => {
-  const name = document.querySelector('.form-add-name');
-  const comment = document.querySelector('.form-add-comment');
-  submit.addEventListener('click', async () => {
-    const id = submit.getAttribute('data-id');
-    await apiService.comment(commentUrl, id, name.value, comment.value);
-    await displayComments(id);
-    name.value = '';
-    comment.value = '';
+const buildModal = (movie) => {
+  const ShowModalElement = ShowModalTemplate.cloneNode(true);
+
+  ShowModalElement.id = `show-modal-${movie.id}`;
+
+  ShowModalElement.querySelector('span.close').addEventListener('click', () => {
+    ShowModalElement.remove();
   });
+
+  ShowModalElement.addEventListener('click', (e) => {
+    if (e.target === ShowModalElement) ShowModalElement.remove();
+    else e.stopPropagation();
+  });
+
+  const imgElement = document.createElement('img');
+  imgElement.src = movie.image;
+  imgElement.alt = `${movie.title} Poster`;
+
+  ShowModalElement.querySelector('.modal-detail-img').appendChild(imgElement);
+
+  const detailTextElement = ShowModalElement.querySelector('.modal-detail-text');
+  buildDetailTextElement(detailTextElement, movie);
+
+  const detailcommentElement = ShowModalElement.querySelector('.modal-detail-comment');
+  buildDetailcommentElement(detailcommentElement, movie);
+
+  document.querySelector('body').appendChild(ShowModalElement);
 };
 
-export default { displayTvShows, addModal, addCommentEventListner };
+const buildShowItemElement = (movie) => {
+  const ShowItemElement = ShowItemTemplate.cloneNode(true);
+
+  ShowItemElement.id = `show-item-${movie.id}`;
+
+  ShowItemElement.addEventListener('click', (e) => {
+    e.preventDefault();
+    buildModal(movie);
+  });
+
+  const imgElement = document.createElement('img');
+  imgElement.src = movie.image;
+  imgElement.alt = `${movie.name} Poster`;
+
+  const imgContainerElement = ShowItemElement.querySelector('.img-container');
+
+  imgContainerElement.appendChild(imgElement);
+
+  const titleElement = ShowItemElement.querySelector('.title');
+  titleElement.innerHTML = movie.name;
+
+  const commentBtnElement = ShowItemElement.querySelector('.comment-btn');
+  commentBtnElement.dataset.id = movie.id;
+
+  return ShowItemElement;
+};
+
+const displayTvShows = async (movies) => {
+  container.textContent = '';
+  movies.forEach((movie) => container.appendChild(buildShowItemElement(movie)));
+};
+
+export default { displayTvShows };

@@ -56,6 +56,7 @@ const like = async (url, id) => {
     },
   });
 };
+
 const getComments = async (url, id) => {
   const result = new CommentList();
   try {
@@ -65,8 +66,8 @@ const getComments = async (url, id) => {
       }
       throw new Error('not okay response');
     });
-    comments.forEach((c) => {
-      result.push(new Comment(c.item_id, c.username, c.comment));
+    comments.forEach((c, index) => {
+      result.push(new Comment(index, c.username, c.comment));
     });
   } catch {
     return result;
