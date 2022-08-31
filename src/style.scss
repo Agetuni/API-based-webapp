@@ -225,6 +225,10 @@ body {
           color: black;
           padding: 50px;
           font-size: 2vh;
+
+          span.bold {
+            font-weight: bold;
+          }
         }
 
         .modal-detail-comment {
