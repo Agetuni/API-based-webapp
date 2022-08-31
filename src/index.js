@@ -7,8 +7,6 @@ const moviesUrl = 'https://api.tvmaze.com/shows';
 const initTemplate = async () => {
   const movies = await apiService.getTvShows(moviesUrl);
   await domService.displayTvShows(movies.list);
-  domService.addModal();
-  await domService.addCommentEventListner();
 };
 
 const init = async () => {

@@ -56,6 +56,7 @@ const like = async (url, id) => {
     },
   });
 };
+
 const getComments = async (url, id) => {
   const result = new CommentList();
   try {
