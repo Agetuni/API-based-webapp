@@ -20,6 +20,8 @@ module.exports = {
   devtool: 'inline-source-map',
 
   devServer: {
+    watchFiles: ['src/*.html'],
+    hot: true,
     static: './dist',
     server: 'https',
     headers: {

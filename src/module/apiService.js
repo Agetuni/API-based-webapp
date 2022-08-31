@@ -1,5 +1,7 @@
 import MovieList from './movieList.js';
 import Movie from './movie.js';
+import CommentList from './CommentList.js';
+import Comment from './comment.js';
 
 const getTvShows = async (url) => {
   const allMovies = new MovieList();
@@ -54,13 +56,24 @@ const like = async (url, id) => {
     },
   });
 };
-const getComment = async (url, id) => {
-  let response = await fetch(`${url}?item_id=${id}`);
-  if (response.status === 400) {
-    response = [];
-    return response;
+
+const getComments = async (url, id) => {
+  const result = new CommentList();
+  try {
+    const comments = await fetch(`${url}?item_id=${id}`).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('not okay response');
+    });
+    comments.forEach((c) => {
+      result.push(new Comment(id, c.username, c.comment));
+    });
+  } catch {
+    return result;
   }
-  return response.json();
+
+  return result;
 };
 
 const comment = async (url, itemId, username, comment) => {
@@ -83,6 +96,6 @@ export default {
   getTvShow,
   getlike,
   like,
-  getComment,
+  getComments,
   comment,
 };
