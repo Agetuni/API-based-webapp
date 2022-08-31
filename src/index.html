@@ -11,9 +11,44 @@
 </head>
 
 <body>
+
 	<div class="template">
-		<h1 id="title-template">Hello webpack!</h1>
+
+		<div id="show-item-template" class="show-item">
+			<div class="img-container">
+			</div>
+			<div class="info-container">
+				<div class="title"></div>
+				<div class="reaction">
+					<button class="like-btn"><i class="fa-solid fa-thumbs-up"></i></button>
+					<button class="comment-btn">comment</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="show-modal-template" class="show-modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<div class=" modal-detail">
+					<div class="modal-detail-img"></div>
+					<div class="modal-detail-text">
+						<h3 class="name">name</h3>
+						<div class="language">language</div>
+						<div class="type">type</div>
+						<div class="genres">genres</div>
+						<div class="rating">rating</div>
+						<div class="summary">summary</div>
+					</div>
+					<div class="modal-detail-comment">
+						<div class="box">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
+
 	<header>
 		<div class="logo">
 			<a href="#">API Based WebApp</a>
@@ -38,14 +73,15 @@
 
 	<aside>
 		<div id="myModal" class="modal">
+
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<div class=" modal-detail">
-					<div class="modal-detail-img ">
+					<div class="modal-detail-img">
 					</div>
-					<div class="modal-detail-text ">
+					<div class="modal-detail-text">
 					</div>
-					<div class="modal-detail-comment ">
+					<div class="modal-detail-comment">
 
 					</div>
 				</div>
