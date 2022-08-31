@@ -229,12 +229,52 @@ body {
         .modal-detail-comment {
           grid-row: auto / span 1;
           grid-column: 1 / -1;
-          background-color: #888;
-          overflow: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: stretch;
 
-          .box {
+          h2 {
+            text-align: center;
+          }
+
+          form.add-comment {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+              "input"
+              "text"
+              "btn";
+
+            @media (min-width: 768px) {
+              & {
+                grid-template-columns: 1fr 10rem;
+                grid-template-areas:
+                  "input btn"
+                  "text text";
+              }
+            }
+
+            .form-add-name {
+              grid-area: input;
+              margin: 5px;
+            }
+
+            .form-add-comment {
+              grid-area: text;
+              margin: 5px;
+            }
+
+            .submit-comment-btn {
+              grid-area: btn;
+              margin: 5px;
+            }
+          }
+
+          .loading-coment-item {
             width: 100%;
-            height: 1000px;
+            text-align: center;
+            padding: 1em;
+            font-size: 2rem;
           }
         }
       }
