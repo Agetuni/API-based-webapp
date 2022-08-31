@@ -37,8 +37,12 @@ const buildDetailcommentElement = (detailcommentElement, movie) => {
   LoadingdivElement.classList.add('loading-coment-item');
   LoadingdivElement.textContent = '( Loading... )';
 
+  const comentSubmitBtn = detailcommentElement.querySelector('.submit-comment-btn');
+  comentSubmitBtn.disabled = true;
+
   apiService.getComments(commentUrl, movie.id).then((CommentList) => {
     comentList.innerHTML = '';
+    comentSubmitBtn.disabled = false;
     comentCounter.textContent = `( ${CommentList.List.length} )`;
     CommentList.List.forEach((comment) => {
       const modalContentUserCommentElement = modalContentUserCommentTemplate.cloneNode(true);
@@ -52,6 +56,22 @@ const buildDetailcommentElement = (detailcommentElement, movie) => {
 
       comentList.appendChild(modalContentUserCommentElement);
     });
+
+    const commentForm = detailcommentElement.querySelector('form.add-comment');
+    commentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const CommentEntries = Object.fromEntries(data.entries());
+
+      await apiService.comment(
+        commentUrl,
+        movie.id,
+        CommentEntries.name,
+        CommentEntries.comment,
+      );
+
+      buildDetailcommentElement(detailcommentElement, movie);
+    });
   });
 
   comentList.appendChild(LoadingdivElement);
@@ -64,6 +84,11 @@ const buildModal = (movie) => {
 
   ShowModalElement.querySelector('span.close').addEventListener('click', () => {
     ShowModalElement.remove();
+  });
+
+  ShowModalElement.addEventListener('click', (e) => {
+    if (e.target === ShowModalElement) ShowModalElement.remove();
+    else e.stopPropagation();
   });
 
   const imgElement = document.createElement('img');
