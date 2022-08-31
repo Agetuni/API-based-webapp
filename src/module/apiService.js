@@ -66,8 +66,8 @@ const getComments = async (url, id) => {
       }
       throw new Error('not okay response');
     });
-    comments.forEach((c, index) => {
-      result.push(new Comment(index, c.username, c.comment));
+    comments.forEach((c) => {
+      result.push(new Comment(id, c.username, c.comment));
     });
   } catch {
     return result;
