@@ -44,9 +44,9 @@ const buildDetailcommentElement = (detailcommentElement, movie) => {
     comentList.innerHTML = '';
     comentSubmitBtn.disabled = false;
     comentCounter.textContent = `( ${CommentList.List.length} )`;
-    CommentList.List.forEach((comment) => {
+    CommentList.List.forEach((comment, index) => {
       const modalContentUserCommentElement = modalContentUserCommentTemplate.cloneNode(true);
-      modalContentUserCommentElement.id = `modal-content-user-comment-${comment.item_id}`;
+      modalContentUserCommentElement.id = `modal-content-user-comment-${index}`;
 
       const userName = modalContentUserCommentElement.querySelector('.user h4');
       userName.textContent = comment.username;
