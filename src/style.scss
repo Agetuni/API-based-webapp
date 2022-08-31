@@ -169,6 +169,16 @@ body {
     margin: 5px 0;
   }
 
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba($color: #000, $alpha: 50%);
+    color: white;
+    text-align: center;
+  }
+
   @media (max-width: 768px) {
     .flex-container,
     .modal-detail {
