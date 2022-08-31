@@ -9,6 +9,12 @@ const ShowItemTemplate = document.querySelector('.template #show-item-template')
 const ShowModalTemplate = document.querySelector('.template #show-modal-template');
 const modalContentUserCommentTemplate = document.querySelector('.template #modal-content-user-comment-template');
 
+const likeMovie = async (e, movie) => {
+  e.stopPropagation();
+  await apiService.like(`${baseUrl}/likes`, movie.id);
+  movie.like += 1;
+};
+
 const buildDetailTextElement = (detailTextElement, movie) => {
   const titleElement = detailTextElement.querySelector('.name');
   titleElement.textContent = movie.name;
@@ -27,6 +33,12 @@ const buildDetailTextElement = (detailTextElement, movie) => {
 
   const likeElement = detailTextElement.querySelector('.like span');
   likeElement.innerHTML = movie.like;
+
+  const likebtnElement = detailTextElement.querySelector('.like button');
+  likebtnElement.addEventListener('click', async (e) => {
+    await likeMovie(e, movie);
+    buildDetailTextElement(detailTextElement, movie);
+  });
 
   const summaryElement = detailTextElement.querySelector('.summary');
   summaryElement.innerHTML = movie.summary;
@@ -134,6 +146,13 @@ const buildShowItemElement = (movie) => {
 
   const commentBtnElement = ShowItemElement.querySelector('.comment-btn');
   commentBtnElement.dataset.id = movie.id;
+
+  const likeBtnElement = ShowItemElement.querySelector('.like-btn');
+  likeBtnElement.dataset.id = movie.id;
+
+  likeBtnElement.addEventListener('click', (e) => {
+    likeMovie(e, movie);
+  });
 
   return ShowItemElement;
 };
