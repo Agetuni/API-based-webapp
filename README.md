@@ -1,8 +1,9 @@
 # API-based-webapp
 
-> One paragraph statement about the project.
+> Api based webapp read movies from open souce api and display.
+The system is capable of displaying movies along with the  likes and comments.
 
-![screenshot](./app_screenshot.png)
+![image](https://user-images.githubusercontent.com/45159038/187962183-3be80fbb-b630-468d-b28f-3461b2206da8.png)
 
 Additional description about the project and its features.
 
@@ -13,7 +14,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://agetuni.github.io/API-based-webapp/)
 
 
 ## Getting Started
@@ -84,11 +85,6 @@ Feel free to check the [issues page](issues/).
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
