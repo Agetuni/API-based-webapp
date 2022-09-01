@@ -159,12 +159,12 @@ const buildShowItemElement = (movie) => {
 
 const UpdateMovieCounter = (movies) => {
   const moviesCountElement = document.querySelector('header .nav-item .movies-count');
-  moviesCountElement.textContent = `( ${movies.length} )`;
+  moviesCountElement.textContent = `( ${movies.getMoiveCount()} )`;
 };
 
-const displayTvShows = async (movies) => {
+const displayTvShows = async (movieList) => {
   container.textContent = '';
-
+  const movies = movieList.list;
   const likeList = await apiService.getlike(`${baseUrl}/likes`);
 
   movies.forEach((movie) => {
@@ -173,7 +173,7 @@ const displayTvShows = async (movies) => {
     container.appendChild(buildShowItemElement(movie));
   });
 
-  UpdateMovieCounter(movies);
+  UpdateMovieCounter(movieList);
 };
 
 export default { displayTvShows };

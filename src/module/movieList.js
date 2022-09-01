@@ -6,6 +6,10 @@ class MovieList {
   push(movie) {
     this.list.push(movie);
   }
+
+  getMoiveCount() {
+    return this.list.length;
+  }
 }
 
 export default MovieList;
