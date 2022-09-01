@@ -79,7 +79,7 @@ npm run test
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](../issues/).
+Feel free to check the [issues page](/issues).
 
 ## Show your support
 
