@@ -157,6 +157,11 @@ const buildShowItemElement = (movie) => {
   return ShowItemElement;
 };
 
+const UpdateMovieCounter = (movies) => {
+  const moviesCountElement = document.querySelector('header .nav-item .movies-count');
+  moviesCountElement.textContent = `( ${movies.length} )`;
+};
+
 const displayTvShows = async (movies) => {
   container.textContent = '';
 
@@ -167,6 +172,8 @@ const displayTvShows = async (movies) => {
     movie.like = like?.likes ?? 0;
     container.appendChild(buildShowItemElement(movie));
   });
+
+  UpdateMovieCounter(movies);
 };
 
 export default { displayTvShows };
