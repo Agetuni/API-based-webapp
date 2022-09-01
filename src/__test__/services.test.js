@@ -1,6 +1,6 @@
-import getNumberofComment from './services.js';
-import CommentList from './CommentList.js';
-import Comment from './comment.js';
+import getNumberofComment from '../module/services.js';
+import CommentList from '../module/CommentList.js';
+import Comment from '../module/comment.js';
 
 describe('getNumberofComment', () => {
   it('getNumberofComment must give exact number of comments', () => {
