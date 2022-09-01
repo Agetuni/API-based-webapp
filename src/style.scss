@@ -225,6 +225,23 @@ body {
           color: black;
           padding: 50px;
           font-size: 2vh;
+
+          .like {
+            button {
+              background: none;
+              border: unset;
+              cursor: pointer;
+              color: red;
+
+              &data[liked="true"] {
+                color: black;
+              }
+            }
+          }
+
+          span.bold {
+            font-weight: bold;
+          }
         }
 
         .modal-detail-comment {
